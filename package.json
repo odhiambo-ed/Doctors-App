@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  },
+  "name": "react-and-rails",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.19.0"
+  },
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  }
+}
