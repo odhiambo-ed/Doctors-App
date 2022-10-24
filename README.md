@@ -63,7 +63,7 @@ For more details, see [the Installation docs page](https://www.ruby-lang.org/en/
 
 - GitHub: [@zemola](https://github.com/zemola)
 - Twitter: [@zemolat](https://twitter.com/zemolat)
-- LinkedIn: [@Azeem](https://www.linkedin.com/in/azeem-olatunji/)
+- LinkedIn: [@Azeem](https://www.linkedin.com/in/olatunjiazeem/)
 
 ## 🤝 Contributing
 
