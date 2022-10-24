@@ -1,0 +1,2 @@
+web: cd frontend && PORT=3001 npm start
+api: bundle exec rails s -p 3000
