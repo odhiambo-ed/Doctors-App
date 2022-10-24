@@ -1,9 +1,7 @@
 {
   "dependencies": {
     "http-proxy-middleware": "^2.0.6"
-  }
-},
-{
+  },
   "name": "react-and-rails",
   "version": "1.0.0",
   "engines": {

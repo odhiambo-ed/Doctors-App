@@ -30,6 +30,10 @@ To get a clone of the project, run `git clone https://github.com/white3d/Rails-R
 cd /Rails-React-Doctor-Appointment-App
 ```
 
+```
+rake start
+```
+
 
 ### Available Scripts
 
