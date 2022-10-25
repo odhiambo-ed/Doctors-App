@@ -4,6 +4,8 @@ import physicians from './physicians/physicianSlice';
 const store = configureStore({
   reducer: {
     physicians,
+    users,
+    appointments,
   },
 });
 
