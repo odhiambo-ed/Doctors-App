@@ -2,22 +2,39 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const physiciansAPI = 'http://localhost:3000/physicians';
-const initialState = [];
+const INITIAL_STATE = { physicianList: [], loading: true };
 
-export const fetchPhysician = createAsyncThunk('physicians/getPhysician', async () => {
+export const fetchPhysicians = createAsyncThunk('physicians/getPhysicians', async () => {
   const res = await fetch(physiciansAPI);
   const data = await res.json();
 
   return data;
 });
 
-const messagesSlice = createSlice({
-  name: 'physicians',
-  initialState,
-  extraReducers: {
-    [fetchPhysician.fulfilled]: (state, action) => action.payload,
 
+const physiciansSlice = createSlice({
+  name: 'physicians',
+  initialState: INITIAL_STATE,
+  extraReducers: {
+    [fetchPhysicians.fulfilled]: (state, action) => {
+      const res = action.payload.map(({id, name, bio,specialization, photo, city,consultation_fee }) => {
+        return { id, name, bio,specialization, photo, city,consultation_fee};
+      });
+      state.loading = false;
+      state.physicianList = res;
+    },
+    [fetchPhysicians.pending]: (state) => { state.loading = true },
+    [fetchPhysicians.rejected]: (state) => { state.loading = false },
   },
+
 });
 
+
+
 export default physiciansSlice.reducer;
+
+
+
+
+
+
