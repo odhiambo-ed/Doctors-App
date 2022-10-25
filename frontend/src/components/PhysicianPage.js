@@ -9,15 +9,21 @@ const PhysicianData = ({
 
   return (
 
-    <div>
-
-      <div>{name}</div>
-      <div>{bio}</div>
-      <div>{photo}</div>
-      <div>{specialization}</div>
-      <div>{city}</div>
+    <div className='doctor-container'>
+     <div>
+     <div>{photo}</div>
+     
+     </div>
+     <div>
+        <div>{name}</div>
+        <div>{bio}</div>
+        <div>{specialization}</div>
+        <div>{city}</div>
       <div>{consultation_fee}</div>
 
+     </div>
+     
+      
       <button type="button">Reserve Appointment</button>
       <button type="button">Cancel Appointment</button>
     </div>
