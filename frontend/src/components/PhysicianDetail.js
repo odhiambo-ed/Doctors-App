@@ -5,7 +5,7 @@ const PhysicianDetail = () => {
   const { physicianList } = useSelector((state) => state.physicians);
 
   return (
-    <div>
+    <div className="doctors-list">
       {physicianList.map((physician) => (
         <PhysicianPage
           key={physician.id}

@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* eslint-disable camelcase */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const physiciansAPI = 'http://localhost:3000/physicians';

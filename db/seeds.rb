@@ -6,4 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Physician.create(name:"Patrick", bio:"Neurosurgeon", photo:"hhhhhhhhhhh", specialization:"Neurosurgeon", consultation_fee:200, city:"Kigali")
+Physician.destroy_all
+
+Physician.create(name:"Patrick", bio:"Neurosurgeon", photo:"https://dims.healthgrades.com/dims3/MMH/c81d174/2147483647/strip/true/crop/3000x3000+750+0/resize/300x300!/format/webp/quality/75/?url=https%3A%2F%2Fucmscdn.healthgrades.com%2F74%2F8e%2F714c0971403d881ea7b822a4dbcf%2Fgettyimages-1205145301.jpg", specialization:"Neurosurgeon", consultation_fee:200, city:"Kigali")
+Physician.create(name:"Edward", bio:"Neurosurgeon", photo:"https://dims.healthgrades.com/dims3/MMH/ebe8ea4/2147483647/strip/true/crop/2000x2000+0+500/resize/300x300!/format/webp/quality/75/?url=https%3A%2F%2Fucmscdn.healthgrades.com%2Faf%2F94%2F28aa622a4e479015b6068947cd3e%2Fgettyimages-626554570.jpg", specialization:"Neurosurgeon", consultation_fee:200, city:"Kigali")
+Physician.create(name:"Mustapha", bio:"Neurosurgeon", photo:"https://d2cyt36b7wnvt9.cloudfront.net/exams/wp-content/uploads/2017/01/05042830/Fouad-Abbas.jpg", specialization:"Neurosurgeon", consultation_fee:200, city:"Kigali")
+Physician.create(name:"Azeem", bio:"Neurosurgeon", photo:"https://dims.healthgrades.com/dims3/MMH/0984121/2147483647/strip/true/crop/2787x2787+407+0/resize/300x300!/format/webp/quality/75/?url=https%3A%2F%2Fucmscdn.healthgrades.com%2F13%2F34%2F63eefec84dd6b10e41907097d328%2Fgettyimages-1183027436.jpg", specialization:"Neurosurgeon", consultation_fee:200, city:"Kigali")
+
+p "Created #{Physician.count} physicians"

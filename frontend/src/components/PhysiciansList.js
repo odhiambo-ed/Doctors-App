@@ -7,7 +7,7 @@ import './Physician.css';
 const Physicians = () => {
   const dispatch = useDispatch();
 
-  const { loading, physiciansList } = useSelector((state) => state.physicians);
+  const { loading } = useSelector((state) => state.physicians);
 
   useEffect(() => {
     async function fetchAllPhysicians() {
