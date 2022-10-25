@@ -1,67 +1,51 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import './NavBar.module.css';
-import { Link } from 'react-router-dom';
-import { MdClose } from 'react-icons/md';
-import { FiMenu } from 'react-icons/fi';
-
+import { useState } from 'react'
+import './Navbar.css'
 const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isNavExpanded, setIsNavExpanded] = useState(false)
 
-  const handleToggle = () => {
-    setNavbarOpen((prev) => !prev);
-  };
-
-  const closeMenu = () => {
-    setNavbarOpen(false);
-  };
   return (
-    <nav className="Nav">
-      <button type="button" onClick={handleToggle}>
-        {navbarOpen ? (
-          <MdClose style={{ color: 'red', width: '40px', height: '40px' }} />
-        ) : (
-          <FiMenu style={{ color: '#7b7b7b', width: '40px', height: '40px' }} />
-        )}
-      </button>
-      <Link
-        onClick={() => closeMenu()}
-        to="/doctors"
-        className="Nav-brand"
+    <nav className='navigation'>
+      <a href='/' className='brand-name'>
+        <h2>Doctors appointment</h2>
+      </a>
+      <button
+        className='hamburger'
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded)
+        }}
       >
-        Doctors
-      </Link>
-      <ul className={`Nav-links menuNav ${navbarOpen ? ' showMenu' : ''}`}>
-        <li className="Nav-item">
-          <Link
-            onClick={() => closeMenu()}
-            className="Nav-link"
-            to="/"
-          >
-            Home
-          </Link>
-        </li>
-        <li className="Nav-item">
-          <Link
-            onClick={() => closeMenu()}
-            className="Nav-link"
-            to="/reserve"
-          >
-            Reserve
-          </Link>
-        </li>
-        <li className="Nav-item">
-          <Link
-            onClick={() => closeMenu()}
-            className="Nav-link"
-            to="/reservations"
-          >
-            My reservations
-          </Link>
-        </li>
-      </ul>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          className='h-5 w-5'
+          viewBox='0 0 20 20'
+          fill='white'
+        >
+          <path
+            fillRule='evenodd'
+            d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z'
+            clipRule='evenodd'
+          />
+        </svg>
+      </button>
+      <div
+        className={
+          isNavExpanded ? 'navigation-menu expanded' : 'navigation-menu'
+        }
+      >
+        <ul>
+          <li>
+            <a href='/doctors'>Doctors</a>
+          </li>
+          <li>
+            <a href='/appointment'>Appointments</a>
+          </li>
+          <li>
+            <a href='/book'>Book</a>
+          </li>
+        </ul>
+      </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
