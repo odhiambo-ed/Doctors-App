@@ -11,21 +11,22 @@ export const fetchAppointments = createAsyncThunk('physicians/getAppointments', 
   return data;
 });
 
-
 const appointmentsSlice = createSlice({
   name: 'appointments',
   initialState: INITIAL_STATE,
 
   extraReducers: {
     [fetchAppointments.fulfilled]: (state, action) => {
-      const res = action.payload.map(({id, date, time, reason }) => {
-        return { id, date, time, reason};
-      });
+      const res = action.payload.map(({
+        id, date, time, reason,
+      }) => ({
+        id, date, time, reason,
+      }));
       state.loading = false;
       state.userList = res;
     },
-    [fetchAppointments.pending]: (state) => { state.loading = true },
-    [fetchAppointments.rejected]: (state) => { state.loading = false },
+    [fetchAppointments.pending]: (state) => { state.loading = true; },
+    [fetchAppointments.rejected]: (state) => { state.loading = false; },
   },
 
 });

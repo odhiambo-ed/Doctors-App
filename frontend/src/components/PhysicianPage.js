@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 const PhysicianData = ({
-  id, name, bio, photo,specialization, city, consultation_fee,
+  id, name, bio, photo, specialization, city, consultation_fee,
 }) => {
   const dispatch = useDispatch();
-
-
 
   return (
 
     <div>
-
 
       <div>{name}</div>
       <div>{bio}</div>
@@ -21,10 +18,9 @@ const PhysicianData = ({
       <div>{city}</div>
       <div>{consultation_fee}</div>
 
-      
-          <button type="button" >Reserve Appointment</button>
-          <button type="button" >Cancel Appointment</button>
-      </div>
+      <button type="button">Reserve Appointment</button>
+      <button type="button">Cancel Appointment</button>
+    </div>
 
   );
 };
