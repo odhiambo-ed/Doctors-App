@@ -9,10 +9,12 @@ const Physicians = () => {
   const { loading, physiciansList } = useSelector((state) => state.physicians);
 
   useEffect(() => {
-    if (physiciansList.length === 0) {
+    async function fetchAllPhysicians() {
       dispatch(fetchPhysicians());
     }
-  }, [dispatch]);
+
+    fetchAllPhysicians();
+  }, []);
 
   return (
     <section>

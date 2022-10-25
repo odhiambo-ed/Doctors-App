@@ -26,7 +26,7 @@ const PhysicianData = ({
 };
 
 PhysicianData.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
   specialization: PropTypes.string.isRequired,

@@ -7,7 +7,6 @@ const INITIAL_STATE = { physicianList: [], loading: true };
 export const fetchPhysicians = createAsyncThunk('physicians/getPhysicians', async () => {
   const res = await fetch(physiciansAPI);
   const data = await res.json();
-
   return data;
 });
 
