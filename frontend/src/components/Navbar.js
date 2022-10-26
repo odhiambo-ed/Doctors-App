@@ -44,6 +44,9 @@ const Navbar = () => {
           <li>
             <a href="/book">Book</a>
           </li>
+          <li>
+            <a href="/doctors/new">Add Doctor</a>
+          </li>
         </ul>
       </div>
     </nav>
