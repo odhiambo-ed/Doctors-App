@@ -1,33 +1,46 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getDoctorDetails } from '../redux/physicians/physicianSlice';
 
-const PhysicianData = ({
+const PhysicianPage = ({
   id, name, bio, photo, specialization, city, consultation_fee,
-}) => (
+}) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  <div key={id} className="doctor-container">
-    <div>
-      <img src={photo} alt="Doctor" className="doctor-image" />
+  const handleClick = (name) => {
+    dispatch(getDoctorDetails({ name }));
+    navigate(`/doctors/${id}`);
+  };
+  return (
+    <div key={id} className="doctor-container">
+      <div>
+        <img src={photo} alt="Doctor" className="doctor-image" />
 
-    </div>
-    <div className="doctor-info">
-      <div className="doctor-name">{name}</div>
-      <div className="doctor-specialization">{specialization}</div>
-      <div className="doctor-fee">
-        <span>Consultation Price:  </span>
-        {consultation_fee}
-        $
       </div>
-      <div className="doctor-bio">{bio}</div>
-      <div className="doctor-city">{city}</div>
+      <div className="doctor-info">
 
+        <div className="doctor-name" onClick={() => handleClick(name)}>
+          {name}
+        </div>
+        <div className="doctor-specialization">{specialization}</div>
+        <div className="doctor-fee">
+          <span>Consultation Price:  </span>
+          {consultation_fee}
+          $
+        </div>
+        <div className="doctor-bio">{bio}</div>
+        <div className="doctor-city">{city}</div>
+
+      </div>
     </div>
-  </div>
 
-);
-
-PhysicianData.propTypes = {
+  );
+};
+PhysicianPage.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
@@ -38,4 +51,4 @@ PhysicianData.propTypes = {
 
 };
 
-export default PhysicianData;
+export default PhysicianPage;
