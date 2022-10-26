@@ -23,9 +23,12 @@ const PhysicianPage = ({
       </div>
       <div className="doctor-info">
 
-        <div className="doctor-name" onClick={() => handleClick(name)}>
+        {/* <div className="doctor-name" onClick={() => handleClick(name)}>
           {name}
-        </div>
+        </div> */}
+        <button type="button" className="doctor-name" onClick={() => handleClick(name)}>
+          {name}
+        </button>
         <div className="doctor-specialization">{specialization}</div>
         <div className="doctor-fee">
           <span>Consultation Price:  </span>
