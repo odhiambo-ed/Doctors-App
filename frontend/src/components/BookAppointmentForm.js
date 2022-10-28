@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 const BookAppointmentForm = ({ physicianDetail }) => {
   const location = useLocation();
-  console.log(physicianDetail[0]);
+  console.log(physicianDetail);
   return (
     <form>
       <label htmlFor="date">
