@@ -3,7 +3,6 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
@@ -39,18 +38,20 @@ const Navbar = () => {
             <a href="/doctors">Doctors</a>
           </li>
           <li>
-            <a href="/appointment">Appointments</a>
+            <a href="/appointments">Appointments</a>
           </li>
           <li>
-            <a href="/book">Book</a>
+            <a href="/doctors/book">Book an Appointment</a>
           </li>
           <li>
             <a href="/doctors/new">Add Doctor</a>
+          </li>
+          <li>
+            <a href="/doctors/delete">Delete Doctor</a>
           </li>
         </ul>
       </div>
     </nav>
   );
 };
-
 export default Navbar;

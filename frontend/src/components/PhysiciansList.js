@@ -4,7 +4,7 @@ import { fetchPhysicians } from '../redux/physicians/physicianSlice';
 import PhysicianDetail from './PhysicianDetail';
 import './Physician.css';
 
-const Physicians = () => {
+const PhysiciansList = () => {
   const dispatch = useDispatch();
 
   const { loading } = useSelector((state) => state.physicians);
@@ -26,4 +26,4 @@ const Physicians = () => {
   );
 };
 
-export default Physicians;
+export default PhysiciansList;

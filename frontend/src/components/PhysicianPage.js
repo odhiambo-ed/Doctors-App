@@ -6,11 +6,16 @@ import { useDispatch } from 'react-redux';
 import { getDoctorDetails } from '../redux/physicians/physicianSlice';
 
 const PhysicianPage = ({
-  id, name, bio, photo, specialization, city, consultation_fee,
+  id,
+  name,
+  bio,
+  photo,
+  specialization,
+  city,
+  consultation_fee,
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleClick = (name) => {
     dispatch(getDoctorDetails({ name }));
     navigate(`/doctors/${id}`);
@@ -19,28 +24,25 @@ const PhysicianPage = ({
     <div key={id} className="doctor-container">
       <div>
         <img src={photo} alt="Doctor" className="doctor-image" />
-
       </div>
       <div className="doctor-info">
-
-        {/* <div className="doctor-name" onClick={() => handleClick(name)}>
-          {name}
-        </div> */}
-        <button type="button" className="doctor-name" onClick={() => handleClick(name)}>
+        <button
+          type="button"
+          className="doctor-name"
+          onClick={() => handleClick(name)}
+        >
           {name}
         </button>
         <div className="doctor-specialization">{specialization}</div>
         <div className="doctor-fee">
-          <span>Consultation Price:  </span>
+          <span>Consultation Price: </span>
           {consultation_fee}
           $
         </div>
         <div className="doctor-bio">{bio}</div>
         <div className="doctor-city">{city}</div>
-
       </div>
     </div>
-
   );
 };
 PhysicianPage.propTypes = {
@@ -51,7 +53,5 @@ PhysicianPage.propTypes = {
   photo: PropTypes.node.isRequired,
   city: PropTypes.string.isRequired,
   consultation_fee: PropTypes.number.isRequired,
-
 };
-
 export default PhysicianPage;
