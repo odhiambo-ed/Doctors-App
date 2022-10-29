@@ -1,12 +1,12 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import PhysiciansList from './components/PhysiciansList';
-import Physician from './components/Physician';
-import AddPhysicianForm from './components/AddPhysicianForm';
-import DeletePhysician from './components/DeletePhysician';
-import BookAppointmentForm from './components/BookAppointmentForm';
-import AppointmentsList from './components/AppointmentsList';
+import PhysiciansList from './components/Physicians/PhysiciansList';
+import Physician from './components/Physicians/Physician';
+import AddPhysicianForm from './components/Physicians/AddPhysicianForm';
+import DeletePhysician from './components/Physicians/DeletePhysician';
+import BookAppointmentForm from './components/Appointments/BookAppointmentForm';
+import AppointmentsList from './components/Appointments/AppointmentsList';
 import './components/Navbar.css';
 
 function App() {

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getDoctorDetails } from '../redux/physicians/physicianSlice';
+import { getDoctorDetails } from '../../redux/physicians/physicianSlice';
 
 const PhysicianPage = ({
   id,
