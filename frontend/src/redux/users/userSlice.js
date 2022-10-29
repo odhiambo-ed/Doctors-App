@@ -1,15 +1,17 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import http from '../../lib/http'; // <== This is the new code
 
-const usersAPI = 'http://localhost:3000/users';
 const INITIAL_STATE = { userList: [], loading: true };
+const fetchUsersList = () => http.get('/users'); // <--- This is the new line
 
-export const fetchUsers = createAsyncThunk('users/getUsers', async () => {
-  const res = await fetch(usersAPI);
-  const data = await res.json();
-
-  return data;
-});
+export const fetchUsers = createAsyncThunk( // <--- This is the new code
+  'users/getUsers',
+  async () => {
+    const { data } = await fetchUsersList();
+    return data;
+  },
+);
 
 const usersSlice = createSlice({
   name: 'users',
@@ -17,9 +19,8 @@ const usersSlice = createSlice({
 
   extraReducers: {
     [fetchUsers.fulfilled]: (state, action) => {
-      const res = action.payload.map(({ id, name, email }) => ({ id, name, email }));
+      state.userList = action.payload;
       state.loading = false;
-      state.userList = res;
     },
     [fetchUsers.pending]: (state) => { state.loading = true; },
     [fetchUsers.rejected]: (state) => { state.loading = false; },
