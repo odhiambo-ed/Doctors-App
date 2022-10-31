@@ -18,7 +18,7 @@ class PhysiciansController < ApplicationController
     @physician = Physician.new(physician_params)
 
     if @physician.save
-      render json: @physician, status: :created, location: @physician
+      render json: @physician, status: :created
     else
       render json: @physician.errors, status: :unprocessable_entity
     end

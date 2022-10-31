@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAppointments } from '../redux/appointments/appointmentSlice';
+import { fetchAppointments } from '../../redux/appointments/appointmentSlice';
 import AppointmentDetail from './AppointmentDetail';
 import './Appointment.css';
 

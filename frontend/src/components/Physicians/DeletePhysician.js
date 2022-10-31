@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DeletePhysiciansList from './DeletePhysiciansList';
-import { fetchPhysicians } from '../redux/physicians/physicianSlice';
+import { fetchPhysicians } from '../../redux/physicians/physicianSlice';
 
 const DeletePhysician = () => {
   const dispatch = useDispatch();

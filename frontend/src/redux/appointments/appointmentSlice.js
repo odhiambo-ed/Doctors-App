@@ -1,28 +1,24 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import http from '../../lib/http'; // <== This is the new code
 
-const appointmentsAPI = 'http://localhost:3000/appointments';
 const INITIAL_STATE = { appointmentList: [], loading: true };
-export const fetchAppointments = createAsyncThunk(
+const fetchAppointmentsList = () => http.get('/appointments'); // <--- This is the new line
+
+export const fetchAppointments = createAsyncThunk( // <--- This is the new code
   'appointments/getAppointments',
   async () => {
-    const res = await fetch(appointmentsAPI);
-    const data = await res.json();
+    const { data } = await fetchAppointmentsList();
     return data;
   },
 );
+
 const appointmentsSlice = createSlice({
   name: 'appointments',
   initialState: INITIAL_STATE,
   extraReducers: {
     [fetchAppointments.fulfilled]: (state, action) => {
-      const AppointmentsArr = action.payload.map((item) => ({
-        id: item.id,
-        reason: item.reason,
-        date: item.date,
-        time: item.time,
-      }));
-      state.appointmentList = AppointmentsArr;
+      state.appointmentList = action.payload;
       state.loading = false;
     },
     [fetchAppointments.pending]: (state) => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPhysicians } from '../redux/physicians/physicianSlice';
+import { fetchPhysicians } from '../../redux/physicians/physicianSlice';
 import PhysicianDetail from './PhysicianDetail';
 import './Physician.css';
 
