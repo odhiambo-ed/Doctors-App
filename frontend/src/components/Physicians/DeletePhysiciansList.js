@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000/physicians';
+const baseURL = 'http://localhost:3000/api/v1/physicians';
 
 const DeletePhysiciansList = ({
   id, name, photo, specialization,
@@ -16,9 +16,14 @@ const DeletePhysiciansList = ({
     });
   }, []);
 
-  const deletePost = () => {
-    axios
-      .delete(`${baseURL}/1`)
+  const deletePost = (e) => {
+    axios({
+      method: 'delete',
+      url: `${baseURL}/${e.target.id}`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
       .then((response) => {
         alert('Post deleted!');
         const physicians = [...state.physicians, response.data];
@@ -38,7 +43,7 @@ const DeletePhysiciansList = ({
           {name}
         </div>
         <div className="doctor-specialization">{specialization}</div>
-        <button type="button" className="doctor-name" onClick={deletePost(id)}>
+        <button type="button" className="doctor-name" id={id} onClick={deletePost}>
           Delete
         </button>
       </div>
