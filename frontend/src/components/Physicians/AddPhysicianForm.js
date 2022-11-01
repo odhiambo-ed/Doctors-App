@@ -1,11 +1,17 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000/physicians';
+const baseURL = 'http://localhost:3000/api/v1/physicians';
 
 const AddPhysicianForm = () => {
   const [state, setState] = useState(null);
+  const name = useRef();
+  const bio = useRef();
+  const specialization = useRef();
+  const photo = useRef();
+  const city = useRef();
+  const consultationFee = useRef();
 
   useEffect(() => {
     axios.get(`${baseURL}/1`).then((response) => {
@@ -23,14 +29,26 @@ const AddPhysicianForm = () => {
       city: state.city,
       consultation_fee: state.consultation_fee,
     };
-    axios
-      .post(baseURL, {
+    axios({
+      method: 'post',
+      url: baseURL,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: {
         physician,
-      })
+      },
+    })
       .then((response) => {
-        console.log(response);
         const physicians = [...state.physicians, response.data];
         setState({ physicians });
+
+        name.current.value = '';
+        bio.current.value = '';
+        specialization.current.value = '';
+        consultationFee.current.value = '';
+        photo.current.value = '';
+        city.current.value = '';
       })
       .catch((error) => {
         console.log(error);
@@ -56,6 +74,7 @@ const AddPhysicianForm = () => {
             id="physicianName"
             required
             onChange={handleChange}
+            ref={name}
           />
         </label>
       </div>
@@ -68,6 +87,7 @@ const AddPhysicianForm = () => {
             id="physicianBio"
             required
             onChange={handleChange}
+            ref={bio}
           />
         </label>
       </div>
@@ -81,6 +101,7 @@ const AddPhysicianForm = () => {
             name="specialization"
             required
             onChange={handleChange}
+            ref={specialization}
 
           />
         </label>
@@ -95,6 +116,7 @@ const AddPhysicianForm = () => {
             name="consultation_fee"
             required
             onChange={handleChange}
+            ref={consultationFee}
 
           />
         </label>
@@ -109,6 +131,7 @@ const AddPhysicianForm = () => {
             name="photo"
             required
             onChange={handleChange}
+            ref={photo}
           />
         </label>
       </div>
@@ -122,6 +145,7 @@ const AddPhysicianForm = () => {
             name="city"
             required
             onChange={handleChange}
+            ref={city}
 
           />
         </label>

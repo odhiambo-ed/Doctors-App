@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000/appointments';
+const baseURL = 'http://localhost:3000/api/v1/appointments';
 
 const BookAppointmentForm = () => {
   const [state, setState] = useState(null);
