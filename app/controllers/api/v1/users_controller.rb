@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   # GET /users
@@ -36,6 +36,15 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+  end
+
+  def login
+    @user = User.find_by(username: params[:username])
+    if @user.present?
+      render json: { success: true, message: 'Logged in successfully', user: @user }, status: :ok
+    else
+      render json: { error: 'User not found' }, status: :not_found
+    end
   end
 
   private
