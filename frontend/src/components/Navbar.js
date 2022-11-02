@@ -1,8 +1,42 @@
-import { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// import Parse from 'parse';
+
 import './Navbar.css';
+import { Link } from 'react-router-dom';
+import { logout } from '../slices/auth';
+import EventBus from '../common/EventBus';
 
 const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setShowModeratorBoard(currentUser.roles.includes('ROLE_MODERATOR'));
+      setShowAdminBoard(currentUser.roles.includes('ROLE_ADMIN'));
+    } else {
+      setShowModeratorBoard(false);
+      setShowAdminBoard(false);
+    }
+
+    EventBus.on('logout', () => {
+      logOut();
+    });
+
+    return () => {
+      EventBus.remove('logout');
+    };
+  }, [currentUser, logOut]);
+
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
@@ -34,6 +68,62 @@ const Navbar = () => {
         }
       >
         <ul>
+
+          <div>
+
+            {showModeratorBoard && (
+            <li>
+              <Link to="/mod">
+                Moderator Board
+              </Link>
+            </li>
+            )}
+
+            {showAdminBoard && (
+            <li>
+              <Link to="/admin">
+                Admin Board
+              </Link>
+            </li>
+            )}
+
+            {currentUser && (
+            <li>
+              <Link to="/user">
+                User
+              </Link>
+            </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div>
+              <li>
+                <Link to="/profile">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li>
+                <a href="/login" onClick={logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div>
+              <li>
+                <Link to="/login">
+                  Login
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/register">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
           <li>
             <a href="/doctors">Doctors</a>
           </li>
