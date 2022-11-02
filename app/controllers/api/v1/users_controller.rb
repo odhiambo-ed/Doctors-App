@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
-  skip_before_action :authenticate_user, only: [:create]
+  # skip_before_action :authenticate_user, only: [:create]
   # GET /users
   def index
     @users = User.all
@@ -19,6 +19,7 @@ class Api::V1::UsersController < ApplicationController
 
     if @user.save
       render json: @user, status: :created
+    else
       render json: @user.errors, status: :unprocessable_entity
     end
   end

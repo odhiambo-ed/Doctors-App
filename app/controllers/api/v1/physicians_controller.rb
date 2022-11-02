@@ -36,6 +36,7 @@ class Api::V1::PhysiciansController < ApplicationController
   # DELETE /physicians/1
   def destroy
     @physician.destroy
+    render json: { message: 'Physician deleted successfully' }
   end
 
   private
