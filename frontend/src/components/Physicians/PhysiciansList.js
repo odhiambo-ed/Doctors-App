@@ -15,7 +15,7 @@ const PhysiciansList = () => {
     }
 
     fetchAllPhysicians();
-  }, []);
+  }, [dispatch]);
 
   return (
     <section>

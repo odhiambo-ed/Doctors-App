@@ -10,7 +10,7 @@ const DeletePhysician = () => {
       dispatch(fetchPhysicians());
     }
     fetchAllPhysicians();
-  }, []);
+  }, [dispatch]);
   const { physicianList } = useSelector((state) => state.physicians);
   return (
     <div className="doctors-list">

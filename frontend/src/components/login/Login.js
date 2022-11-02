@@ -1,10 +1,7 @@
-/* eslint-disable camelcase */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import RightArrow from '../../assets/next.png';
-import './Physician.css';
+import './Login.css';
+import '../Physicians/Physician.css';
 import Logo from '../../assets/hamburger.png';
 import BackArrow from '../../assets/left-arrow.png';
 import Twitter from '../../assets/twitter.png';
@@ -13,15 +10,9 @@ import Google from '../../assets/google-plus.png';
 import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
 
-const Physician = () => {
+const Login = () => {
   const [show, setShow] = useState(false);
-  const [active, setActive] = useState('Doctors');
-  const { physicianList } = useSelector((state) => state.physicians);
-  const physicianDetail = physicianList.filter(({ show }) => show);
-  const navigate = useNavigate();
-  const handleClick = (id) => {
-    navigate(`/doctors/${id}/book`, { state: { physicianDetail } });
-  };
+  const [active, setActive] = useState('LOGIN');
   return (
     <div className="subWindow">
       <div className="navigationWindow">
@@ -78,42 +69,19 @@ const Physician = () => {
           </button>
         )}
       </div>
-      <div key={physicianDetail[0].id} className="doctor-container1">
-        <div>
-          <img
-            src={physicianDetail[0].photo}
-            alt="Doctor"
-            className="doctor-image1"
-          />
-        </div>
-        <div className="doctor-info">
-          <div className="doctor-name1">{physicianDetail[0].name}</div>
-          <div className="doctor-specialization1">
-            {physicianDetail[0].specialization}
-          </div>
-          <div className="doctor-fee1">
-            <span>Price:</span>
-            <span>
-              $
-              {physicianDetail[0].consultation_fee}
-            </span>
-          </div>
-          <div className="doctor-bio1">{physicianDetail[0].bio}</div>
-          <div className="doctor-city1">{physicianDetail[0].city}</div>
-          <button
-            type="button"
-            className="bookAppointment"
-            onClick={() => handleClick(physicianDetail[0].id)}
-          >
-            <h3>Book An Appointment</h3>
-            <img className="nextImage" src={RightArrow} alt="next" />
-          </button>
-        </div>
+      <div className="loginSection">
+        <h1>Login Here</h1>
+        <label htmlFor="username">
+          <p>Enter your username</p>
+          <input type="text" placeholder="Username..." />
+        </label>
+        <button type="button">Login</button>
       </div>
     </div>
   );
 };
-export default Physician;
+
+export default Login;
 
 const ActiveTabs = ({
   path,
