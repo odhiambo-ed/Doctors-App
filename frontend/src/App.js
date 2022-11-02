@@ -7,16 +7,18 @@ import AddPhysicianForm from './components/Physicians/AddPhysicianForm';
 import DeletePhysician from './components/Physicians/DeletePhysician';
 import BookAppointmentForm from './components/Appointments/BookAppointmentForm';
 import AppointmentsList from './components/Appointments/AppointmentsList';
+import Login from './components/login/Login';
 import './components/Navbar.css';
 
 function App() {
   return (
-    <div className="container">
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />}>
             <Route index element={<PhysiciansList />} />
             <Route path="/doctors" element={<PhysiciansList />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/appointments" element={<AppointmentsList />} />
             <Route path="/doctors/:id" element={<Physician />} />
             <Route path="/doctors/new" element={<AddPhysicianForm />} />
