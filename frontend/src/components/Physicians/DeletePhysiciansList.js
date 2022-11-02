@@ -25,7 +25,6 @@ const DeletePhysiciansList = ({
       },
     })
       .then((response) => {
-        alert('Post deleted!');
         const physicians = [...state.physicians, response.data];
         setState(
           physicians.filter((physician) => physician.id !== id),
