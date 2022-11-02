@@ -12,7 +12,7 @@ const AppointmentsList = () => {
       dispatch(fetchAppointments());
     }
     fetchAllAppointments();
-  }, []);
+  }, [dispatch]);
   return (
     <section>
       {loading && <h2>Loading...</h2>}
