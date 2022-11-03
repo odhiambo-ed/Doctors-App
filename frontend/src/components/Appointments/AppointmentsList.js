@@ -39,7 +39,12 @@ const AppointmentsList = () => {
   }, []);
   return (
     <div className="subWindow">
-      <div className="navigationWindow nest">
+      <div
+        className="navigationWindow nest"
+        style={{
+          width: show ? '18%' : '0%',
+        }}
+      >
         {show ? (
           <div>
             <div className="navTop">
