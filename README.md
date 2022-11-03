@@ -14,6 +14,15 @@
 [Live Link](https://github.com/users/white3d/projects/2/views/1)
 
 
+## API documentation
+
+[Live Link](https://medium.com/@pazzomuk/doctors-appointments-api-documentation-2412e3e9eb3f)
+
+
+## DB Graph
+- ![](./doctor-appointment-db-graph.png)
+
+doctor-appointment-db-graph
 
 ## Built With
 
@@ -36,9 +45,7 @@ To get a clone of the project, run `git clone https://github.com/white3d/Rails-R
 ```
 cd /Rails-React-Doctor-Appointment-App
 ```
-```
-rake db:migrate:up VERIOSN=20221101161054
-```
+
 ```
 rake db:migrate 
 ```
