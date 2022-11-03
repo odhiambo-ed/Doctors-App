@@ -242,10 +242,27 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
-  margin-top: 300px;
 }
 
 .icons img {
   width: 15px;
   height: 15px;
+}
+
+.logoutSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 180px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bolder;
+}
+.logoutSection button {
+  color: white;
+  border: none;
+  outline: none;
+  background-color: red;
+  cursor: pointer;
 }
