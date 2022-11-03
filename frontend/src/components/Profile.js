@@ -38,10 +38,10 @@ const Profile = () => {
         {currentUser.email}
       </p>
       <strong>Authorities:</strong>
-      <ul>
+      {/* <ul>
         {currentUser.roles
           && currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-      </ul>
+      </ul> */}
     </div>
   );
 };
