@@ -54,7 +54,12 @@ const PhysicianDetail = () => {
   return (
     <div className="slide-container">
       <div className="subWindow">
-        <div className="navigationWindow">
+        <div
+          className="navigationWindow"
+          style={{
+            width: show ? '18%' : '0%',
+          }}
+        >
           {show ? (
             <div>
               <div className="navTop">
@@ -109,7 +114,12 @@ const PhysicianDetail = () => {
             </button>
           )}
         </div>
-        <div className="carouselWindow">
+        <div
+          className="carouselWindow"
+          style={{
+            width: show ? '82%' : '100%',
+          }}
+        >
           <h1 className="sectionTitle">ALL AVAILABLE DOCTORS</h1>
           <p className="sectionMini">Please select a doctor</p>
           <Carousel responsive={responsive}>
