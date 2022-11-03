@@ -45,7 +45,12 @@ const Register = () => {
   };
   return (
     <div className="subWindow">
-      <div className="navigationWindow">
+      <div
+        className="navigationWindow"
+        style={{
+          width: show ? '18%' : '0%',
+        }}
+      >
         {show ? (
           <div>
             <div className="navTop">
