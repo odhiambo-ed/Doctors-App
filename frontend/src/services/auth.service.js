@@ -2,9 +2,9 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/v1/users/';
+const API_URL = 'http://localhost:3000/api/v1';
 
-const register = (username, email, password, password_confirmation) => axios.post(`${API_URL}`, {
+const register = (username, email, password, password_confirmation) => axios.post(`${API_URL}/users`, {
   username,
   email,
   password,
@@ -13,7 +13,7 @@ const register = (username, email, password, password_confirmation) => axios.pos
 
 const login = (username, password) => axios
 
-  .post(`${API_URL}`, {
+  .post(`${API_URL}/login`, {
     username,
     password,
   })
@@ -33,6 +33,7 @@ const authService = {
   register,
   login,
   logout,
+
 };
 
 export default authService;
