@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import CircularProgress from '@mui/material/CircularProgress';
 import { fetchAppointments } from '../../redux/appointments/appointmentSlice';
 import AppointmentDetail from './AppointmentDetail';
 import './Appointment.css';
@@ -87,9 +88,14 @@ const AppointmentsList = () => {
                 />
               )}
             </div>
-            <div className="logoutSection" style={{ backgroundColor: user !== null ? 'red' : '' }}>
+            <div
+              className="logoutSection"
+              style={{ backgroundColor: user !== null ? 'red' : '' }}
+            >
               {user !== null && (
-                <button type="button" onClick={signOutUser}>Log Out</button>
+                <button type="button" onClick={signOutUser}>
+                  Log Out
+                </button>
               )}
             </div>
             <div className="icons">
@@ -109,6 +115,9 @@ const AppointmentsList = () => {
           <button
             type="button"
             className="burgerButton"
+            style={{
+              marginTop: -9,
+            }}
             onClick={() => setShow(!show)}
           >
             <img src={Logo} alt="logo-img" className="burger" />
@@ -117,9 +126,29 @@ const AppointmentsList = () => {
       </div>
       <div className="appointments">
         <div className="appointments">
-          {loading && <h2>Loading...</h2>}
+          {loading && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CircularProgress />
+            </div>
+          )}
           {!loading && user !== null && <AppointmentDetail />}
-          {user === null && <h1>You need to login first!!!</h1>}
+          {user === null && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <h1>You need to login first!!!</h1>
+            </div>
+          )}
         </div>
       </div>
     </div>
