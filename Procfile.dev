@@ -1,2 +1,2 @@
-web: cd frontend && PORT=3001 npm start
+web: cd frontend && (PORT=3001 || PORT=process.env.PORT) npm start
 api: bundle exec rails s -p 3000
