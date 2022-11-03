@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../Physicians/Physician.css';
 import Logo from '../../assets/hamburger.png';
@@ -13,13 +12,14 @@ import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
 import useAuth from '../../state';
 
-const baseURL = 'http://localhost:3000/api/v1/appointments';
-
 const BookAppointmentForm = () => {
-  const [state, setState] = useState(null);
   const [show, setShow] = useState(false);
   const [active, setActive] = useState('Appointments');
   const [user, setUser] = useState(null);
+  const [selectDate, setSelectDate] = useState('');
+  const [selectTime, setSelectTime] = useState('');
+  const [selectReason, setSelectReason] = useState('');
+  const [status, setStatus] = useState('');
   const session = useAuth();
   useEffect(() => {
     (async () => {
@@ -33,45 +33,41 @@ const BookAppointmentForm = () => {
   };
   const location = useLocation();
 
-  useEffect(() => {
-    axios.get(`${baseURL}/1`).then((response) => {
-      setState(response.data);
-    });
-  }, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    const base = location.state.physicianDetail[0];
     const appointment = {
-      time: state.time,
-      date: state.date,
-      reason: state.reason,
+      time: selectTime,
+      date: selectDate,
+      reason: `${selectReason}*${base.name}+${base.photo}`,
       physician_id: location.state.physicianDetail[0].id,
       user_id: user.id,
     };
-    axios
-      .post(baseURL, {
-        appointment,
-      })
-      .then((response) => {
-        console.log(response);
-        const appointments = [...state.appointments, response.data];
-        setState({ appointments });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
+    fetch('http://localhost:3000/api/v1/appointments', {
+      method: 'POST',
+      body: JSON.stringify(appointment),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => {
+      setStatus('Appointment booked successfully!!');
+      setSelectDate('');
+      setSelectTime('');
+      setSelectReason('');
+      setTimeout(() => {
+        setStatus('');
+      }, 1500);
     });
   };
 
   return (
     <div className="subWindow">
-      <div className="navigationWindow">
+      <div
+        className="navigationWindow"
+        style={{
+          width: show ? '18%' : '0%',
+        }}
+      >
         {show ? (
           <div>
             <div className="navTop">
@@ -114,9 +110,14 @@ const BookAppointmentForm = () => {
                 />
               )}
             </div>
-            <div className="logoutSection" style={{ backgroundColor: user !== null ? 'red' : '' }}>
+            <div
+              className="logoutSection"
+              style={{ backgroundColor: user !== null ? 'red' : '' }}
+            >
               {user !== null && (
-                <button type="button" onClick={signOutUser}>Log Out</button>
+                <button type="button" onClick={signOutUser}>
+                  Log Out
+                </button>
               )}
             </div>
             <div className="icons">
@@ -127,7 +128,9 @@ const BookAppointmentForm = () => {
               <img src={Pinterest} alt="pinterest" />
             </div>
             <div>
-              <p style={{ textAlign: 'center', fontSize: 13, marginTop: 15 }}>Copyright 2022 @Doctor Services</p>
+              <p style={{ textAlign: 'center', fontSize: 13, marginTop: 15 }}>
+                Copyright 2022 @Doctor Services
+              </p>
             </div>
           </div>
         ) : (
@@ -142,9 +145,26 @@ const BookAppointmentForm = () => {
       </div>
       <div className="formSection">
         {user === null ? (
-          <h1>You need to login first!!!</h1>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <h1>You need to login first!!!</h1>
+          </div>
         ) : (
           <form onSubmit={handleSubmit}>
+            {status && (
+              <p style={{
+                textAlign: 'center',
+                color: 'red',
+              }}
+              >
+                {status}
+              </p>
+            )}
             <div className="form-group">
               <p className="labelTitle">Date</p>
               <label htmlFor="date">
@@ -154,7 +174,8 @@ const BookAppointmentForm = () => {
                   id="appointmentDate"
                   required
                   className="inputSection"
-                  onChange={handleChange}
+                  value={selectDate}
+                  onChange={(e) => setSelectDate(e.target.value)}
                 />
               </label>
             </div>
@@ -167,7 +188,8 @@ const BookAppointmentForm = () => {
                   id="appointmentTime"
                   required
                   className="inputSection"
-                  onChange={handleChange}
+                  value={selectTime}
+                  onChange={(e) => setSelectTime(e.target.value)}
                 />
               </label>
             </div>
@@ -180,18 +202,8 @@ const BookAppointmentForm = () => {
                   name="reason"
                   required
                   className="inputSection"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div className="form-group">
-              <p className="labelTitle">Name</p>
-              <label htmlFor="name">
-                <input
-                  type="text"
-                  id="name"
-                  className="inputSection"
-                  placeholder={location.state.physicianDetail[0].name}
+                  value={selectReason}
+                  onChange={(e) => setSelectReason(e.target.value)}
                 />
               </label>
             </div>
@@ -209,10 +221,7 @@ const BookAppointmentForm = () => {
 export default BookAppointmentForm;
 
 const ActiveTabs = ({
-  path,
-  label,
-  active,
-  setActive,
+  path, label, active, setActive,
 }) => (
   <div
     className="optionLabel"
