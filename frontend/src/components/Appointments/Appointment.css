@@ -52,3 +52,44 @@ form {
     justify-content: center;
     flex-direction: row;
 }
+
+.logoutSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointments {
+  width: 90%;
+  margin: 20px;
+}
+
+.appointment-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.appointment-container {
+  background-color: rgb(248, 242, 242);
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.appointment-info img {
+  width: 150px;
+  height: 150px;
+}

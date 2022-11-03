@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Login.css';
+import './Register.css';
 import '../Physicians/Physician.css';
 import Logo from '../../assets/hamburger.png';
 import BackArrow from '../../assets/left-arrow.png';
@@ -11,10 +11,13 @@ import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
 import useAuth from '../../state';
 
-const Login = () => {
+const Register = () => {
   const [show, setShow] = useState(false);
-  const [active, setActive] = useState('LOGIN');
+  const [active, setActive] = useState('SIGN UP');
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [user, setUser] = useState(null);
   const session = useAuth();
   useEffect(() => {
@@ -23,14 +26,22 @@ const Login = () => {
       setUser(exist);
     })();
   }, [session]);
+  const registerUser = async () => {
+    const dataObj = {
+      username,
+      email,
+      password,
+      password_confirmation: passwordConfirmation,
+    };
+    await session.register(dataObj);
+    await setUsername('');
+    await setEmail('');
+    await setPassword('');
+    await setPasswordConfirmation('');
+  };
 
   const signOutUser = async () => {
     await session.signOut();
-  };
-
-  const loginUser = async () => {
-    await session.login({ username });
-    await setUsername('');
   };
   return (
     <div className="subWindow">
@@ -109,18 +120,30 @@ const Login = () => {
         )}
       </div>
       <div className="loginSection">
-        <h1>Login Here</h1>
+        <h1>Sign Up Here</h1>
         <label htmlFor="username">
           <p>Enter your username</p>
           <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Username..." />
         </label>
-        <button type="button" onClick={loginUser}>Login</button>
+        <label htmlFor="email">
+          <p>Enter your email</p>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email..." />
+        </label>
+        <label htmlFor="password">
+          <p>Enter your password</p>
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password..." />
+        </label>
+        <label htmlFor="password_confirmation">
+          <p>Confirm your password</p>
+          <input value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} type="password" placeholder="Password Confirmation..." />
+        </label>
+        <button type="button" onClick={registerUser}>Sign Up</button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
 
 const ActiveTabs = ({
   path,
