@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
 import { fetchPhysicians } from '../../redux/physicians/physicianSlice';
 import PhysicianDetail from './PhysicianDetail';
 import './Physician.css';
@@ -15,13 +16,22 @@ const PhysiciansList = () => {
     }
 
     fetchAllPhysicians();
-  }, [dispatch]);
+  }, []);
 
   return (
     <section>
-      {loading
-        && (<h2>Loading...</h2>)}
-      {!loading && (<PhysicianDetail />)}
+      {loading && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircularProgress />
+        </div>
+      )}
+      {!loading && <PhysicianDetail />}
     </section>
   );
 };
