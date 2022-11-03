@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
 import '../Physicians/Physician.css';
@@ -9,10 +9,29 @@ import Facebook from '../../assets/facebook.png';
 import Google from '../../assets/google-plus.png';
 import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
+import useAuth from '../../state';
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState('LOGIN');
+  const [username, setUsername] = useState('');
+  const [user, setUser] = useState(null);
+  const session = useAuth();
+  useEffect(() => {
+    (async () => {
+      const exist = await session.currentUser;
+      setUser(exist);
+    })();
+  }, [session]);
+
+  const signOutUser = async () => {
+    await session.signOut();
+  };
+
+  const loginUser = async () => {
+    await session.login({ username });
+    await setUsername('');
+  };
   return (
     <div className="subWindow">
       <div className="navigationWindow">
@@ -41,12 +60,27 @@ const Login = () => {
                 active={active}
                 setActive={setActive}
               />
-              <ActiveTabs
-                label="LOGIN"
-                path="/login"
-                active={active}
-                setActive={setActive}
-              />
+              {user === null && (
+                <ActiveTabs
+                  label="LOGIN"
+                  path="/login"
+                  active={active}
+                  setActive={setActive}
+                />
+              )}
+              {user === null && (
+                <ActiveTabs
+                  label="SIGN UP"
+                  path="/register"
+                  active={active}
+                  setActive={setActive}
+                />
+              )}
+            </div>
+            <div className="logoutSection" style={{ backgroundColor: user !== null ? 'red' : '' }}>
+              {user !== null && (
+                <button type="button" onClick={signOutUser}>Log Out</button>
+              )}
             </div>
             <div className="icons">
               <img src={Twitter} alt="twitter" />
@@ -73,9 +107,9 @@ const Login = () => {
         <h1>Login Here</h1>
         <label htmlFor="username">
           <p>Enter your username</p>
-          <input type="text" placeholder="Username..." />
+          <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Username..." />
         </label>
-        <button type="button">Login</button>
+        <button type="button" onClick={loginUser}>Login</button>
       </div>
     </div>
   );
