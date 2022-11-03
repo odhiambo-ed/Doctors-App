@@ -146,12 +146,7 @@
 }
 
 .navigationWindow {
-  width: 18%;
   height: 100vh;
-}
-
-.carouselWindow {
-  width: 82%;
 }
 
 .burger {
