@@ -8,8 +8,9 @@
     "node": "10.19.0"
   },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "build": "yarn --cwd frontend install && yarn --cwd frontend build",
+    "deploy": "cp -a frontend/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+
   }
 }
