@@ -1,32 +1,51 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import './Appointment.css';
-import { useSelector } from 'react-redux';
-import Arrow from '../../assets/next.png';
 
 const AppointmentPage = ({
-  id, reason, date, time, doctor,
+  reason, date, photo,
 }) => {
-  const { physicianList } = useSelector((state) => state.physicians);
-  // const current = physicianList.filter((val) => val.id === doctor);
-  console.log(physicianList, doctor);
+  const theDate = new Date(Date.parse(date));
+  const newDate = theDate.toLocaleString();
   return (
-    <div key={id} className="appointment-container">
-      <div className="appointment-info">
-        <img src={Arrow} alt="user-imag" />
-        <div className="appointment-date">{date}</div>
-        <div className="appointment-time">{time}</div>
-        <div className="appointment-reason">{reason}</div>
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={photo}
+        alt="green iguana"
+      />
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          {reason}
+        </Typography>
+      </CardContent>
+      <CardActions style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      >
+        <Button size="small">{newDate}</Button>
+      </CardActions>
+    </Card>
   );
 };
 AppointmentPage.propTypes = {
-  id: PropTypes.number.isRequired,
   reason: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
-  doctor: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
 };
 export default AppointmentPage;
