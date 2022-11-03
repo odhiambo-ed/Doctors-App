@@ -9,28 +9,48 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
 const AppointmentPage = ({
-  reason, date, photo,
+  reason, date, time,
 }) => {
-  const theDate = new Date(Date.parse(date));
-  const newDate = theDate.toLocaleString();
+  const newDate = new Date(date).toLocaleDateString();
+  const splitReason = reason.split('+');
+  const newChange = splitReason.shift();
+  const photoImg = splitReason.join('');
+  const nextChange = newChange.split('*');
+  const reasoned = nextChange.shift();
+  const doctorName = nextChange.join('');
+  const changed = new Date(time).toLocaleTimeString();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="140"
-        image={photo}
-        alt="green iguana"
+        height="250"
+        image={photoImg}
+        alt="doctor image"
       />
       <CardContent>
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
           style={{
             textAlign: 'center',
           }}
         >
-          {reason}
+          You have an appointment with Dr.
+          {' '}
+          {doctorName}
+        </Typography>
+        <Typography
+          gutterBottom
+          variant="p"
+          component="div"
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Reason:
+          {' '}
+          {reasoned}
         </Typography>
       </CardContent>
       <CardActions style={{
@@ -38,7 +58,14 @@ const AppointmentPage = ({
         alignItems: 'center',
       }}
       >
-        <Button size="small">{newDate}</Button>
+        <Button size="small">
+          Date:
+          {newDate}
+        </Button>
+        <Button size="small">
+          Time:
+          {changed}
+        </Button>
       </CardActions>
     </Card>
   );
@@ -46,6 +73,6 @@ const AppointmentPage = ({
 AppointmentPage.propTypes = {
   reason: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
 };
 export default AppointmentPage;
