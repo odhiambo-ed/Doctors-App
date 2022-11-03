@@ -11,6 +11,7 @@ import Facebook from '../../assets/facebook.png';
 import Google from '../../assets/google-plus.png';
 import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
+import useAuth from '../../state';
 
 const baseURL = 'http://localhost:3000/api/v1/appointments';
 
@@ -18,6 +19,18 @@ const BookAppointmentForm = () => {
   const [state, setState] = useState(null);
   const [show, setShow] = useState(false);
   const [active, setActive] = useState('Appointments');
+  const [user, setUser] = useState(null);
+  const session = useAuth();
+  useEffect(() => {
+    (async () => {
+      const exist = await session.currentUser;
+      setUser(exist);
+    })();
+  }, [session]);
+
+  const signOutUser = async () => {
+    await session.signOut();
+  };
   const location = useLocation();
 
   useEffect(() => {
@@ -33,13 +46,14 @@ const BookAppointmentForm = () => {
       date: state.date,
       reason: state.reason,
       physician_id: location.state.physicianDetail[0].id,
-      user_id: 1,
+      user_id: user.id,
     };
     axios
       .post(baseURL, {
         appointment,
       })
       .then((response) => {
+        console.log(response);
         const appointments = [...state.appointments, response.data];
         setState({ appointments });
       })
@@ -83,12 +97,27 @@ const BookAppointmentForm = () => {
                 active={active}
                 setActive={setActive}
               />
-              <ActiveTabs
-                label="LOGIN"
-                path="/login"
-                active={active}
-                setActive={setActive}
-              />
+              {user === null && (
+                <ActiveTabs
+                  label="LOGIN"
+                  path="/login"
+                  active={active}
+                  setActive={setActive}
+                />
+              )}
+              {user === null && (
+                <ActiveTabs
+                  label="SIGN UP"
+                  path="/register"
+                  active={active}
+                  setActive={setActive}
+                />
+              )}
+            </div>
+            <div className="logoutSection" style={{ backgroundColor: user !== null ? 'red' : '' }}>
+              {user !== null && (
+                <button type="button" onClick={signOutUser}>Log Out</button>
+              )}
             </div>
             <div className="icons">
               <img src={Twitter} alt="twitter" />
@@ -112,62 +141,66 @@ const BookAppointmentForm = () => {
         )}
       </div>
       <div className="formSection">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <p className="labelTitle">Date</p>
-            <label htmlFor="date">
-              <input
-                type="date"
-                name="date"
-                id="appointmentDate"
-                required
-                className="inputSection"
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="form-group">
-            <p className="labelTitle">Time</p>
-            <label htmlFor="time">
-              <input
-                type="text"
-                name="time"
-                id="appointmentTime"
-                required
-                className="inputSection"
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="form-group">
-            <p className="labelTitle">Consulation Reason</p>
-            <label htmlFor="reason">
-              <input
-                type="text"
-                id="appointmentReason"
-                name="reason"
-                required
-                className="inputSection"
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="form-group">
-            <p className="labelTitle">Name</p>
-            <label htmlFor="name">
-              <input
-                type="text"
-                id="name"
-                className="inputSection"
-                placeholder={location.state.physicianDetail[0].name}
-              />
-            </label>
-          </div>
+        {user === null ? (
+          <h1>You need to login first!!!</h1>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <p className="labelTitle">Date</p>
+              <label htmlFor="date">
+                <input
+                  type="date"
+                  name="date"
+                  id="appointmentDate"
+                  required
+                  className="inputSection"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <p className="labelTitle">Time</p>
+              <label htmlFor="time">
+                <input
+                  type="text"
+                  name="time"
+                  id="appointmentTime"
+                  required
+                  className="inputSection"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <p className="labelTitle">Consulation Reason</p>
+              <label htmlFor="reason">
+                <input
+                  type="text"
+                  id="appointmentReason"
+                  name="reason"
+                  required
+                  className="inputSection"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <p className="labelTitle">Name</p>
+              <label htmlFor="name">
+                <input
+                  type="text"
+                  id="name"
+                  className="inputSection"
+                  placeholder={location.state.physicianDetail[0].name}
+                />
+              </label>
+            </div>
 
-          <button className="bookAppointment" type="submit">
-            Book Appointment
-          </button>
-        </form>
+            <button className="bookAppointment" type="submit">
+              Book Appointment
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
