@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -11,11 +11,26 @@ import Facebook from '../../assets/facebook.png';
 import Google from '../../assets/google-plus.png';
 import Vimeo from '../../assets/vimeo.png';
 import Pinterest from '../../assets/pinterest.png';
+import useAuth from '../../state';
 
 const PhysicianDetail = () => {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState('Doctors');
+  const [user, setUser] = useState(null);
+  const session = useAuth();
+  useEffect(() => {
+    (async () => {
+      const exist = await session.currentUser;
+      setUser(exist);
+    })();
+  }, [session]);
+
+  const signOutUser = async () => {
+    await session.signOut();
+  };
   const { physicianList } = useSelector((state) => state.physicians);
+
+  console.log(active);
 
   const responsive = {
     superLargeDesktop: {
@@ -51,7 +66,27 @@ const PhysicianDetail = () => {
               <div className="navigationOptions">
                 <ActiveTabs label="Doctors" path="/doctors" active={active} setActive={setActive} />
                 <ActiveTabs label="Appointments" path="/appointments" active={active} setActive={setActive} />
-                <ActiveTabs label="LOGIN" path="/login" active={active} setActive={setActive} />
+                {user === null && (
+                  <ActiveTabs
+                    label="LOGIN"
+                    path="/login"
+                    active={active}
+                    setActive={setActive}
+                  />
+                )}
+                {user === null && (
+                  <ActiveTabs
+                    label="SIGN UP"
+                    path="/register"
+                    active={active}
+                    setActive={setActive}
+                  />
+                )}
+              </div>
+              <div className="logoutSection" style={{ backgroundColor: user !== null ? 'red' : '' }}>
+                {user !== null && (
+                  <button type="button" onClick={signOutUser}>Log Out</button>
+                )}
               </div>
               <div className="icons">
                 <img src={Twitter} alt="twitter" />
