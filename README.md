@@ -4,19 +4,26 @@
 
 > This a web app built on Rails API as backend and React framework as a frontend. This app is used for reserving a doctor's appointment by patients. Users can create, view, edit and delete a list of appointment(s).
 
-## Demo Video
-
-[Video Link]()
-
 ## Live Demo Link
 
-[Live Link]()
+[Live Link](https://mighty-ravine-00298.herokuapp.com/)
+
+
+## Kanban Board
+
+[Live Link](https://github.com/users/white3d/projects/2/views/1)
+
+
 
 ## Built With
 
-![Ruby](https://icongr.am/devicon/ruby-original.svg?size=50&color=currentColor)
-![Ruby on Rails](https://icongr.am/devicon/rails-original-wordmark.svg?size=50&color=currentColor)
-![PostgreSQL](https://icongr.am/devicon/postgresql-original.svg?size=50&color=currentColor)
+- ![](https://img.shields.io/badge/Github-blueviolet)
+- ![](https://img.shields.io/badge/Ruby-red)
+- ![](https://img.shields.io/badge/Ruby*on*Rails-red)
+- ![](https://img.shields.io/badge/PostgreSql-blue)
+- ![](https://img.shields.io/badge/Webpack-blue)
+- ![](https://img.shields.io/badge/React-blue)
+- ![](https://img.shields.io/badge/Redux-violet)
 
 ## Get Started
 
@@ -29,6 +36,12 @@ To get a clone of the project, run `git clone https://github.com/white3d/Rails-R
 ```
 cd /Rails-React-Doctor-Appointment-App
 ```
+```
+rake db:migrate:up VERIOSN=20221101161054
+```
+```
+rake db:migrate 
+```
 
 ```
 rake start
@@ -40,6 +53,8 @@ rake start
 Gets all the required dependencies of the projects.
 
 **`bundle install`**
+**`cd /frontend`** then run 
+**`yarn install`**
 
 For more details, see [the Installation docs page](https://www.ruby-lang.org/en/).
 
@@ -63,11 +78,6 @@ For more details, see [the Installation docs page](https://www.ruby-lang.org/en/
 - Twitter: [@Patrick](https://twitter.com/mukunzipat)
 - LinkedIn: [@Patrick](https://www.linkedin.com/in/patrick-mukunzi/)
 
-**AZEEM OLATUNJI**
-
-- GitHub: [@zemola](https://github.com/zemola)
-- Twitter: [@zemolat](https://twitter.com/zemolat)
-- LinkedIn: [@Azeem](https://www.linkedin.com/in/olatunjiazeem/)
 
 ## 🤝 Contributing
 
