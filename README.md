@@ -6,7 +6,7 @@
 
 ## Live Demo Link
 
-[Live Link](https://mighty-ravine-00298.herokuapp.com/)
+[Live Link](https://shielded-wave-72984.herokuapp.com/)
 
 
 ## Kanban Board
