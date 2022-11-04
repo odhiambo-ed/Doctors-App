@@ -45,11 +45,29 @@ To get a clone of the project, run `git clone https://github.com/white3d/Rails-R
 ```
 cd /Rails-React-Doctor-Appointment-App
 ```
+```
+bundle install
+```
+```
+rake db:create 
+```
 
 ```
 rake db:migrate 
 ```
+```
+rake db:seed 
+```
+```
+cd /frontend` 
+```
+```
+yarn install
+```
 
+```
+npm install --force
+```
 ```
 rake start
 ```
@@ -59,9 +77,8 @@ rake start
 
 Gets all the required dependencies of the projects.
 
-**`bundle install`**
-**`cd /frontend`** then run 
-**`yarn install`**
+
+
 
 For more details, see [the Installation docs page](https://www.ruby-lang.org/en/).
 
