@@ -40,7 +40,7 @@ const Physician = () => {
       <div
         className="navigationWindow"
         style={{
-          width: show ? '18%' : '0%',
+          width: show ? '25%' : '0%',
         }}
       >
         {show ? (
@@ -63,7 +63,7 @@ const Physician = () => {
                 setActive={setActive}
               />
               <ActiveTabs
-                label="Appointments"
+                label="Bookings"
                 path="/appointments"
                 active={active}
                 setActive={setActive}
@@ -111,7 +111,14 @@ const Physician = () => {
           </button>
         )}
       </div>
-      <div key={physicianDetail[0].id} className="doctor-container1">
+      <div
+        key={physicianDetail[0].id}
+        className="doctor-container1"
+        style={{
+          width: show ? '75%' : '100%',
+          marginTop: 140,
+        }}
+      >
         <div>
           <img
             src={physicianDetail[0].photo}
@@ -124,7 +131,12 @@ const Physician = () => {
           <div className="doctor-specialization1">
             {physicianDetail[0].specialization}
           </div>
-          <div className="doctor-fee1">
+          <div
+            className="doctor-fee1"
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+          >
             <span>Price:</span>
             <span>
               $

@@ -20,7 +20,13 @@ const AppointmentPage = ({
   const doctorName = nextChange.join('');
   const changed = new Date(time).toLocaleTimeString();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{ maxWidth: 345 }}
+      style={{
+        marginTop: 30,
+        marginBottom: 10,
+      }}
+    >
       <CardMedia
         component="img"
         height="250"
@@ -36,7 +42,7 @@ const AppointmentPage = ({
             textAlign: 'center',
           }}
         >
-          You have an appointment with Dr.
+          You have an appointment with
           {' '}
           {doctorName}
         </Typography>
@@ -54,8 +60,11 @@ const AppointmentPage = ({
         </Typography>
       </CardContent>
       <CardActions style={{
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
       }}
       >
         <Button size="small">

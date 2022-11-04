@@ -71,7 +71,7 @@ const Register = () => {
                 setActive={setActive}
               />
               <ActiveTabs
-                label="Appointments"
+                label="Bookings "
                 path="/appointments"
                 active={active}
                 setActive={setActive}
@@ -119,25 +119,71 @@ const Register = () => {
           </button>
         )}
       </div>
-      <div className="loginSection">
+      <div
+        className="loginSection"
+        style={{
+          width: show ? '75%' : '100%',
+          marginTop: 100,
+        }}
+      >
         <h1>Sign Up Here</h1>
         <label htmlFor="username">
           <p>Enter your username</p>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Username..." />
+          <input
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="Username..."
+          />
         </label>
         <label htmlFor="email">
           <p>Enter your email</p>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email..." />
+          <input
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Email..."
+          />
         </label>
         <label htmlFor="password">
           <p>Enter your password</p>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password..." />
+          <input
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="Password..."
+          />
         </label>
         <label htmlFor="password_confirmation">
           <p>Confirm your password</p>
-          <input value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} type="password" placeholder="Password Confirmation..." />
+          <input
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            type="password"
+            placeholder="Password Confirmation..."
+          />
         </label>
-        <button type="button" onClick={registerUser}>Sign Up</button>
+        <button
+          style={{
+            width: show ? '200px' : '300px',
+          }}
+          type="button"
+          onClick={registerUser}
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   );

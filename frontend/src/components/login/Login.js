@@ -37,7 +37,7 @@ const Login = () => {
       <div
         className="navigationWindow"
         style={{
-          width: show ? '18%' : '0%',
+          width: show ? '25%' : '0%',
         }}
       >
         {show ? (
@@ -60,7 +60,7 @@ const Login = () => {
                 setActive={setActive}
               />
               <ActiveTabs
-                label="Appointments"
+                label="Bookings"
                 path="/appointments"
                 active={active}
                 setActive={setActive}
@@ -108,11 +108,25 @@ const Login = () => {
           </button>
         )}
       </div>
-      <div className="loginSection">
+      <div
+        className="loginSection"
+        style={{
+          width: show ? '75%' : '100%',
+          marginTop: 250,
+        }}
+      >
         <h1>Login Here</h1>
         <label htmlFor="username">
           <p>Enter your username</p>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Username..." />
+          <input
+            style={{
+              width: show ? '200px' : '300px',
+            }}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="Username..."
+          />
         </label>
         <button type="button" onClick={loginUser}>Login</button>
       </div>

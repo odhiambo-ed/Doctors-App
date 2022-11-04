@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import { fetchAppointments } from '../../redux/appointments/appointmentSlice';
-import AppointmentDetail from './AppointmentDetail';
+import AppointmentPage from './AppointmentPage';
 import './Appointment.css';
 import '../Physicians/Physician.css';
 import Logo from '../../assets/hamburger.png';
@@ -17,7 +17,7 @@ import useAuth from '../../state';
 
 const AppointmentsList = () => {
   const [show, setShow] = useState(false);
-  const [active, setActive] = useState('LOGIN');
+  const [active, setActive] = useState('Bookings');
   const [user, setUser] = useState(null);
   const session = useAuth();
   useEffect(() => {
@@ -32,6 +32,8 @@ const AppointmentsList = () => {
   };
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.appointments);
+  const { appointmentList } = useSelector((state) => state.appointments);
+  const appointments = appointmentList.filter((val) => val.user_id === user.id);
   useEffect(() => {
     async function fetchAllAppointments() {
       dispatch(fetchAppointments());
@@ -39,11 +41,13 @@ const AppointmentsList = () => {
     fetchAllAppointments();
   }, []);
   return (
-    <div className="subWindow">
+    <div
+      className="subWindow"
+    >
       <div
         className="navigationWindow nest"
         style={{
-          width: show ? '18%' : '0%',
+          width: show ? '25%' : '0%',
         }}
       >
         {show ? (
@@ -66,7 +70,7 @@ const AppointmentsList = () => {
                 setActive={setActive}
               />
               <ActiveTabs
-                label="Appointments"
+                label="Bookings"
                 path="/appointments"
                 active={active}
                 setActive={setActive}
@@ -115,16 +119,18 @@ const AppointmentsList = () => {
           <button
             type="button"
             className="burgerButton"
-            style={{
-              marginTop: -9,
-            }}
             onClick={() => setShow(!show)}
           >
             <img src={Logo} alt="logo-img" className="burger" />
           </button>
         )}
       </div>
-      <div className="appointments">
+      <div
+        style={{
+          width: show ? '75%' : '100%',
+          marginTop: 20,
+        }}
+      >
         <div className="appointments">
           {loading && (
             <div
@@ -137,13 +143,38 @@ const AppointmentsList = () => {
               <CircularProgress />
             </div>
           )}
-          {!loading && user !== null && <AppointmentDetail />}
+          {!loading && user !== null && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                width: '100%',
+                height: 'auto',
+              }}
+            >
+              {appointments.map((appointment) => (
+                <AppointmentPage
+                  key={appointment.id}
+                  reason={appointment.reason}
+                  date={appointment.date}
+                  time={appointment.time}
+                />
+              ))}
+            </div>
+          )}
           {user === null && (
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                width: '100%',
+                height: 'auto',
               }}
             >
               <h1>You need to login first!!!</h1>

@@ -57,7 +57,7 @@ const PhysicianDetail = () => {
         <div
           className="navigationWindow"
           style={{
-            width: show ? '18%' : '0%',
+            width: show ? '25%' : '0%',
           }}
         >
           {show ? (
@@ -70,7 +70,7 @@ const PhysicianDetail = () => {
               </div>
               <div className="navigationOptions">
                 <ActiveTabs label="Doctors" path="/doctors" active={active} setActive={setActive} />
-                <ActiveTabs label="Appointments" path="/appointments" active={active} setActive={setActive} />
+                <ActiveTabs label="Bookings" path="/appointments" active={active} setActive={setActive} />
                 {user === null && (
                   <ActiveTabs
                     label="LOGIN"
@@ -117,7 +117,8 @@ const PhysicianDetail = () => {
         <div
           className="carouselWindow"
           style={{
-            width: show ? '82%' : '100%',
+            width: show ? '75%' : '100%',
+            marginTop: 20,
           }}
         >
           <h1 className="sectionTitle">ALL AVAILABLE DOCTORS</h1>

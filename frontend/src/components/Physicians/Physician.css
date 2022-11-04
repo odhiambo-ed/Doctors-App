@@ -14,10 +14,10 @@
 .doctor-container1 {
   display: flex;
   flex-direction: row;
-  margin: 2rem;
   justify-content: center;
   align-items: center;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .doctor-image {
@@ -28,8 +28,8 @@
 }
 
 .doctor-image1 {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -75,7 +75,6 @@
 .doctor-fee1 {
   font-size: 1.2rem;
   background-color: rgb(189, 187, 187);
-  width: 300px;
   padding: 5px;
   display: flex;
   justify-content: space-between;
@@ -124,35 +123,41 @@
 
 .react-multiple-carousel__arrow--right {
   background-color: rgb(113, 243, 27);
-  width: 120px;
-  height: 70px;
+  width: 60px;
+  height: 30px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  margin-top: 140px;
 }
 
 .react-multiple-carousel__arrow--left {
   background-color: rgb(113, 243, 27);
-  width: 120px;
-  height: 70px;
+  width: 60px;
+  height: 30px;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  margin-top: 140px;
 }
 
 .subWindow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 .navigationWindow {
   height: 100vh;
+  z-index: 1;
 }
 
 .burger {
   width: 50px;
   height: 40px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .burgerButton {
@@ -175,6 +180,11 @@
   cursor: pointer;
   border: none;
   outline: none;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navTop {
@@ -183,6 +193,8 @@
   align-items: center;
   flex-direction: row;
   margin-top: 20px;
+  flex-wrap: wrap;
+  background-color: white;
 }
 
 .backArrow {
@@ -203,6 +215,8 @@
 
 .navigationOptions {
   margin-top: 70px;
+  width: 100%;
+  background-color: white;
 }
 
 .navButton {

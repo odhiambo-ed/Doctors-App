@@ -65,7 +65,7 @@ const BookAppointmentForm = () => {
       <div
         className="navigationWindow"
         style={{
-          width: show ? '18%' : '0%',
+          width: show ? '25%' : '0%',
         }}
       >
         {show ? (
@@ -88,7 +88,7 @@ const BookAppointmentForm = () => {
                 setActive={setActive}
               />
               <ActiveTabs
-                label="Appointments"
+                label="Bookings"
                 path="/appointments"
                 active={active}
                 setActive={setActive}
@@ -143,7 +143,13 @@ const BookAppointmentForm = () => {
           </button>
         )}
       </div>
-      <div className="formSection">
+      <div
+        className="formSection"
+        style={{
+          width: show ? '75%' : '100%',
+          marginTop: 20,
+        }}
+      >
         {user === null ? (
           <div
             style={{
@@ -175,6 +181,9 @@ const BookAppointmentForm = () => {
                   required
                   className="inputSection"
                   value={selectDate}
+                  style={{
+                    width: show ? '200px' : '300px',
+                  }}
                   onChange={(e) => setSelectDate(e.target.value)}
                 />
               </label>
@@ -189,6 +198,9 @@ const BookAppointmentForm = () => {
                   required
                   className="inputSection"
                   value={selectTime}
+                  style={{
+                    width: show ? '200px' : '300px',
+                  }}
                   onChange={(e) => setSelectTime(e.target.value)}
                 />
               </label>
@@ -203,6 +215,9 @@ const BookAppointmentForm = () => {
                   required
                   className="inputSection"
                   value={selectReason}
+                  style={{
+                    width: show ? '200px' : '300px',
+                  }}
                   onChange={(e) => setSelectReason(e.target.value)}
                 />
               </label>
