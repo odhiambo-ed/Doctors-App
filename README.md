@@ -69,6 +69,8 @@ yarn install
 npm install --force
 ```
 ```
+cd ..
+```
 rake start
 ```
 
