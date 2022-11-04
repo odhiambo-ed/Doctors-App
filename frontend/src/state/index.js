@@ -1,6 +1,6 @@
 import { useGlobalState, setGlobalState } from './useAuth';
 
-export default function useAuth() {
+const useAuth = () => {
   const users = useGlobalState('currentUser');
   const currentUser = users[0];
   const register = async (data) => {
@@ -48,4 +48,6 @@ export default function useAuth() {
   return {
     register, login, currentUser, signOut,
   };
-}
+};
+
+export default useAuth;

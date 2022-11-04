@@ -15,7 +15,7 @@ import Register from './components/register/Register';
 import './components/Navbar.css';
 import useAuth from './state';
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null);
   const session = useAuth();
   useEffect(() => {
@@ -52,5 +52,5 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
 export default App;
