@@ -1,2 +1,2 @@
-web: cd frontend && -b 0.0.0.0 -p ${PORT:-3001} npm start
-api: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
+web: cd frontend && PORT=3001 npm start
+api: bundle exec rails s -p 3000
