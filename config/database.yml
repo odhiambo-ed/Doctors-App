@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: Rails_React_Doctor_Appointment_App_production
   username: Rails_React_Doctor_Appointment_App
   password: <%= ENV["RAILS_REACT_DOCTOR_APPOINTMENT_APP_DATABASE_PASSWORD"] %>
