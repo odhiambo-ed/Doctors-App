@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Rails Budget App
+# Rails Doctor's App
 
 > This a web app built on Rails API as backend and React framework as a frontend. This app is used for reserving a doctor's appointment by patients. Users can create, view, edit and delete a list of appointment(s).
 
