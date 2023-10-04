@@ -1,22 +1,38 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Rails Budget App
+# Rails Doctor's App
 
 > This a web app built on Rails API as backend and React framework as a frontend. This app is used for reserving a doctor's appointment by patients. Users can create, view, edit and delete a list of appointment(s).
 
-## Demo Video
-
-[Video Link]()
-
 ## Live Demo Link
 
-[Live Link]()
+[Live Link](https://shielded-wave-72984.herokuapp.com/)
+
+
+## Kanban Board
+
+[Live Link](https://github.com/users/white3d/projects/2/views/1)
+
+
+## API documentation
+
+[Live Link](https://medium.com/@pazzomuk/doctors-appointments-api-documentation-2412e3e9eb3f)
+
+
+## DB Graph
+- ![](./doctor-appointment-db-graph.png)
+
+doctor-appointment-db-graph
 
 ## Built With
 
-![Ruby](https://icongr.am/devicon/ruby-original.svg?size=50&color=currentColor)
-![Ruby on Rails](https://icongr.am/devicon/rails-original-wordmark.svg?size=50&color=currentColor)
-![PostgreSQL](https://icongr.am/devicon/postgresql-original.svg?size=50&color=currentColor)
+- ![](https://img.shields.io/badge/Github-blueviolet)
+- ![](https://img.shields.io/badge/Ruby-red)
+- ![](https://img.shields.io/badge/Ruby*on*Rails-red)
+- ![](https://img.shields.io/badge/PostgreSql-blue)
+- ![](https://img.shields.io/badge/Webpack-blue)
+- ![](https://img.shields.io/badge/React-blue)
+- ![](https://img.shields.io/badge/Redux-violet)
 
 ## Get Started
 
@@ -29,13 +45,42 @@ To get a clone of the project, run `git clone https://github.com/white3d/Rails-R
 ```
 cd /Rails-React-Doctor-Appointment-App
 ```
+```
+bundle install
+```
+```
+rake db:create 
+```
+
+```
+rake db:migrate 
+```
+```
+rake db:seed 
+```
+```
+cd /frontend` 
+```
+```
+yarn install
+```
+
+```
+npm install --force
+```
+```
+cd ..
+```
+rake start
+```
 
 
 ### Available Scripts
 
 Gets all the required dependencies of the projects.
 
-**`bundle install`**
+
+
 
 For more details, see [the Installation docs page](https://www.ruby-lang.org/en/).
 
@@ -59,11 +104,6 @@ For more details, see [the Installation docs page](https://www.ruby-lang.org/en/
 - Twitter: [@Patrick](https://twitter.com/mukunzipat)
 - LinkedIn: [@Patrick](https://www.linkedin.com/in/patrick-mukunzi/)
 
-**AZEEM OLATUNJI**
-
-- GitHub: [@zemola](https://github.com/zemola)
-- Twitter: [@zemolat](https://twitter.com/zemolat)
-- LinkedIn: [@Azeem](https://www.linkedin.com/in/olatunjiazeem/)
 
 ## 🤝 Contributing
 

@@ -1,0 +1,94 @@
+.formSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+form {
+  margin-top: 100px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(230, 230, 230);
+  border-radius: 15px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.labelTitle {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.inputSection {
+    height: 35px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid green;
+    margin-bottom: 10px;
+}
+
+.bookAppointment {
+    background-color: rgb(113, 243, 27);
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.appointment-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.logoutSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointments {
+  width: 90%;
+  margin: 20px;
+}
+
+.appointment-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.appointment-container {
+  background-color: rgb(248, 242, 242);
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.appointment-info img {
+  width: 150px;
+  height: 150px;
+}

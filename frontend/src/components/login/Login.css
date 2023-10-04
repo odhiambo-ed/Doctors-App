@@ -1,0 +1,40 @@
+.loginSection {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginSection h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.loginSection p {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.loginSection input {
+    width: 300px;
+    height: 40px;
+}
+
+.loginSection button {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(113, 243, 27);
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
